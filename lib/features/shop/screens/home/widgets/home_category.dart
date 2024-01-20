@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/shimmer/categories_shimmer.dart';
@@ -29,7 +28,6 @@ class THomeCategories extends StatelessWidget {
             itemCount: categoryController.featuredCategories.length,
             itemBuilder: (context, index) {
               final category = categoryController.featuredCategories[index];
-              log("the length of categories ${categoryController.featuredCategories.length}");
               return TVerticalImageText(
                   image: category.image,
                   title: category.name,

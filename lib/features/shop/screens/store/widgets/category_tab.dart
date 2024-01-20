@@ -4,6 +4,7 @@ import 'package:flutter_ecommerce_app/common/widgets/layout/grid_layout.dart';
 import 'package:flutter_ecommerce_app/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_ecommerce_app/common/widgets/texts/section_heading.dart';
 import 'package:flutter_ecommerce_app/features/shop/models/category_model.dart';
+import 'package:flutter_ecommerce_app/features/shop/models/product_model.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
@@ -34,7 +35,7 @@ class TCategoryTab extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwItems,),
               TGridLayout(
                 itemCount: 4,
-                itemBuilder: (_, index)=>const TProductCardVertical(),
+                itemBuilder: (_, index)=> TProductCardVertical(product: ProductModel.empty()),
               ),
               const SizedBox(height: TSizes.spaceBtwItems,),
             ],

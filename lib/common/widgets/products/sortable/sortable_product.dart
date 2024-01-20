@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/features/shop/models/product_model.dart';
 
 import '../../../../utils/constants/sizes.dart';
 import '../../layout/grid_layout.dart';
@@ -22,7 +23,7 @@ class TSortableProducts extends StatelessWidget {
             items: ['Name', 'Higher Price', 'Lower Price', 'Sale', 'Newest', 'Popularity'].map((option) => DropdownMenuItem(value: option , child: Text(option))).toList(),
             onChanged: (value) {}),
         const SizedBox(height: TSizes.spaceBtwSections,),
-        TGridLayout(itemCount: 12, itemBuilder: (_, index)=>const TProductCardVertical())
+        TGridLayout(itemCount: 12, itemBuilder: (_, index)=> TProductCardVertical(product:ProductModel.empty() ,))
       ],
     );
 

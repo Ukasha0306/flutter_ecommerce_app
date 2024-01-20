@@ -7,9 +7,11 @@ import 'package:flutter_ecommerce_app/utils/constants/color.dart';
 import 'package:flutter_ecommerce_app/utils/constants/sizes.dart';
 import 'package:flutter_ecommerce_app/utils/helpers/helper_functions.dart';
 import '../../../../../common/widgets/chips/choice_chip.dart';
+import '../../../models/product_model.dart';
 
 class TProductAttributes extends StatelessWidget {
-  const TProductAttributes({super.key});
+  final ProductModel product;
+  const TProductAttributes({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -59,39 +61,18 @@ class TProductAttributes extends StatelessWidget {
         const SizedBox(height: TSizes.spaceBtwItems,),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TSectionHeading(title: 'Colors', showActionButton: false),
-            const SizedBox(height: TSizes.spaceBtwItems/2,),
-            Wrap(
-              spacing: 8,
-              children: [
-                TChoiceChip(text: 'Green', selected: false, onSelected: (value){},),
-                TChoiceChip(text: 'Blue', selected: true, onSelected: (value){},),
-                TChoiceChip(text: 'Yellow', selected: false, onSelected: (value){},),
-              ],
-            )
-
-          ],
-        ),
-
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-           const TSectionHeading(title: 'Sizes' , showActionButton: false,),
-            const SizedBox(height: TSizes.spaceBtwItems/2,),
-            Wrap(
-              spacing: 8,
-              children: [
-                TChoiceChip(text: 'EU 34', selected: false, onSelected: (value){},),
-                TChoiceChip(text: 'EU 36', selected: true, onSelected: (value){},),
-                TChoiceChip(text: 'EU 38', selected: false, onSelected: (value){},),
-
-              ],
-            ),
-
-
-
-          ],
+          children: product.productAttributes!.map((attribute) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+               TSectionHeading(title: attribute.name ?? '', showActionButton: false),
+              const SizedBox(height: TSizes.spaceBtwItems/2,),
+              Wrap(
+                spacing: 8,
+                children: attribute.values!.map((value) =>
+                    TChoiceChip(text:value, selected: false, onSelected: (value){},),).toList(),
+              ),
+            ],
+          )).toList(),
         ),
 
       ],

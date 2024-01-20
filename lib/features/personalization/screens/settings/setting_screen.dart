@@ -105,7 +105,8 @@ class SettingScreen extends StatelessWidget {
                     title: 'Load Data',
                     subtitle: 'Upload data to your Cloud Firebase',
                     icon: Iconsax.document_upload,
-                    onTap: () {},
+                    onTap: (){
+                    }
                   ),
                   TSettingMenuTile(
                     title: 'Geolocation',
