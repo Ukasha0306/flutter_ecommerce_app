@@ -43,6 +43,7 @@ static ProductVariationModel empty()=> ProductVariationModel(id: '', attributeVa
 
   factory ProductVariationModel.fromJson(Map<String, dynamic> document){
     final data = document;
+
     if(data.isEmpty) return ProductVariationModel.empty();
     return ProductVariationModel(
         id: data['Id'] ?? '',

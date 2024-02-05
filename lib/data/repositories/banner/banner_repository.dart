@@ -7,7 +7,7 @@ import 'package:flutter_ecommerce_app/utils/exceptions/platform_exceptions.dart'
 import 'package:get/get.dart';
 
 import '../../../utils/exceptions/firebase_exceptions.dart';
-import '../firebase_storage_controller.dart';
+import '../../../features/shop/controllers/firebase_storage_controller.dart';
 
 class BannerRepository extends GetxController{
 

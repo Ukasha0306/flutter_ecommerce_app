@@ -1,4 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/common/widgets/shimmer/shimmer_effect.dart';
+import 'package:flutter_ecommerce_app/features/shop/models/brand_model.dart';
+import 'package:flutter_ecommerce_app/features/shop/screens/brand/brand_products.dart';
+import 'package:get/get.dart';
 import '../../../utils/constants/color.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';
@@ -7,29 +12,33 @@ import '../custom_shapes/containers/rounded_container.dart';
 
 class TBrandShowCase extends StatelessWidget {
   final List<String> images;
+  final BrandModel brand;
 
   const TBrandShowCase({
     super.key,
-    required this.images,
+    required this.images, required this.brand,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TRoundedContainer(
-      showBorder: true,
-      borderColor: TColors.darkGrey,
-      padding: const EdgeInsets.all(TSizes.md),
-      backgroundColor: Colors.transparent,
-      margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
-      child: Column(
-        children: [
-          const TBrandCard(showBorder: false),
-          const SizedBox(height: TSizes.spaceBtwItems,),
-          Row(
-              children: images
-                  .map((image) => brandTopProductImageWidget(image, context))
-                  .toList())
-        ],
+    return InkWell(
+      onTap: ()=>Get.to(()=>BrandProducts(brand: brand)),
+      child: TRoundedContainer(
+        showBorder: true,
+        borderColor: TColors.darkGrey,
+        padding: const EdgeInsets.all(TSizes.md),
+        backgroundColor: Colors.transparent,
+        margin: const EdgeInsets.only(bottom: TSizes.spaceBtwItems),
+        child: Column(
+          children: [
+             TBrandCard(showBorder: false, brand: brand),
+            const SizedBox(height: TSizes.spaceBtwItems,),
+            Row(
+                children: images
+                    .map((image) => brandTopProductImageWidget(image, context))
+                    .toList())
+          ],
+        ),
       ),
     );
   }
@@ -43,10 +52,12 @@ class TBrandShowCase extends StatelessWidget {
             : TColors.light,
         margin: const EdgeInsets.only(right: TSizes.sm),
         padding: const EdgeInsets.all(TSizes.md),
-        child: Image(
+        child: CachedNetworkImage(
           fit: BoxFit.contain,
-          image: AssetImage(image),
-        ),
+          imageUrl: image,
+          progressIndicatorBuilder: (context, url , downloadProgress)=>const TShimmerEffect(width: 100, height: 100),
+          errorWidget: (context, url, error)=> const Icon(Icons.error),
+        )
       ),
     );
   }

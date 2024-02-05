@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/list_tiles/t_setting_menu_tile.dart';
 import 'package:flutter_ecommerce_app/common/widgets/texts/section_heading.dart';
 import 'package:flutter_ecommerce_app/data/repositories/authentication/authentication_repository.dart';
+import 'package:flutter_ecommerce_app/data/repositories/brand/brand_repository.dart';
+import 'package:flutter_ecommerce_app/data/repositories/products/product_repository.dart';
 import 'package:flutter_ecommerce_app/features/personalization/screens/address/address.dart';
 import 'package:flutter_ecommerce_app/features/shop/screens/order/order.dart';
+import 'package:flutter_ecommerce_app/utils/dummy_data/dummy_data.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../common/appBar/app_bar.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/list_tiles/t_user_profile_tile.dart';
+import '../../../../data/repositories/category/category_repository.dart';
 import '../../../../utils/constants/color.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../profile/profile_screen.dart';
@@ -106,6 +110,7 @@ class SettingScreen extends StatelessWidget {
                     subtitle: 'Upload data to your Cloud Firebase',
                     icon: Iconsax.document_upload,
                     onTap: (){
+                   ProductRepository.instance.uploadProductCategory(TDummyData.productCategory);
                     }
                   ),
                   TSettingMenuTile(

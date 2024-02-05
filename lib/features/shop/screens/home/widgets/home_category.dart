@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/shimmer/categories_shimmer.dart';
 import 'package:flutter_ecommerce_app/features/shop/controllers/category_controller.dart';
@@ -15,10 +14,18 @@ class THomeCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
     return Obx(() {
-      if(categoryController.isLoading.value) return  const TCategoryShimmer();
+      if (categoryController.isLoading.value) return const TCategoryShimmer();
 
-      if(categoryController.featuredCategories.isEmpty){
-        return Center(child: Text("No Data Found!", style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white),),);
+      if (categoryController.featuredCategories.isEmpty) {
+        return Center(
+          child: Text(
+            "No Data Found!",
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .apply(color: Colors.white),
+          ),
+        );
       }
       return SizedBox(
         height: 100,
@@ -29,9 +36,14 @@ class THomeCategories extends StatelessWidget {
             itemBuilder: (context, index) {
               final category = categoryController.featuredCategories[index];
               return TVerticalImageText(
-                  image: category.image,
-                  title: category.name,
-                  onTap: () => Get.to(() => const SubCategoriesScreen()));
+                image: category.image,
+                title: category.name,
+                onTap: () => Get.to(
+                  () => SubCategoriesScreen(
+                    category: category,
+                  ),
+                ),
+              );
             }),
       );
     });

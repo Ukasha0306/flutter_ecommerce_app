@@ -42,6 +42,7 @@ class TImages {
   static const String deliveredInPlaneIllustration = "assets/images/animations/sammy-line-come-back-later.png";
   static const String deliveredEmailIllustration = "assets/images/animations/sammy-line-man-receives-a-mail.png";
   static const String verifyIllustration = "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
+  static const String pencilAnimation = 'assets/lottie/140429-pencil-drawing.json';
 
   // lottie
   static String docerAnimation = 'assets/lottie/141594-animation-of-docer.json';
@@ -131,7 +132,8 @@ class TImages {
   static const String productImage75 = "assets/images/products/slipper-product-2.png";
   static const String productImage76 = "assets/images/products/slipper-product-3.png";
   static const String productImage77= "assets/images/products/slipper-product.png";
-
+ static const String productImage78 = 'assets/images/products/puma-1.png';
+ static const String productImage79 = 'assets/images/products/Jorden_white.png';
 
 
 

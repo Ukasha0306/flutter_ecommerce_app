@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:flutter_ecommerce_app/common/widgets/products/product_cards/product_card_vertical.dart';
@@ -67,7 +69,10 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
-                  TSectionHeading(title: "Popular Products", onPressed: ()=>Get.to(()=>const AllProducts())),
+                  TSectionHeading(title: "Popular Products", onPressed: ()=>Get.to(()=> AllProducts(
+                    title: 'Popular Products',
+                    futureMethod: controller.fetchAllFeaturedProducts(),
+                  ))),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),

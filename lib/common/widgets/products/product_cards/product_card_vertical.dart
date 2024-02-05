@@ -11,10 +11,10 @@ import 'package:flutter_ecommerce_app/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../icons/t_circular_icon.dart';
 import '../../texts/product_title_text.dart';
 import '../../texts/t_brand_title_with_verified_icon.dart';
 import '../../texts/t_product_price_text.dart';
+import '../favourite_icon/favourite_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
   final ProductModel product;
@@ -51,6 +51,7 @@ class TProductCardVertical extends StatelessWidget {
                        isNetworkImage: true,
                                        ),
                    ),
+                  if(salePercentage != null)
                   Positioned(
                     top: 12,
                     child: TRoundedContainer(
@@ -59,20 +60,14 @@ class TProductCardVertical extends StatelessWidget {
                           horizontal: TSizes.sm, vertical: TSizes.xs),
                       backgroundColor: TColors.secondary.withOpacity(0.8),
                       child: Text('$salePercentage%',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .apply(color: TColors.black),
+                        style: Theme.of(context).textTheme.labelLarge!.apply(color: TColors.black),
                       ),
                     ),
                   ),
-                  const Positioned(
+                   Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
-                    ),
+                    child: TFavouriteIcon(productId: product.id,),
                   ),
                 ],
               ),
@@ -145,6 +140,8 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+
 
 
 

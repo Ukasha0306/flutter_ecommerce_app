@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_ecommerce_app/data/repositories/firebase_storage_controller.dart';
+import 'package:flutter_ecommerce_app/features/shop/controllers/firebase_storage_controller.dart';
 import 'package:flutter_ecommerce_app/features/shop/models/category_model.dart';
 import 'package:flutter_ecommerce_app/utils/exceptions/firebase_exceptions.dart';
 import 'package:flutter_ecommerce_app/utils/exceptions/platform_exceptions.dart';
@@ -25,6 +25,26 @@ class CategoryRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
+  // Get sub categories
+
+  Future<List<CategoryModel>> getSubCategories(String categoryId)async{
+    try{
+      
+      final snapshot = await _db.collection('Categories').where('ParentId', isEqualTo: categoryId).get();
+       final result  = snapshot.docs.map((docs) => CategoryModel.fromSnapshot(docs)).toList();
+       return result;
+    }
+    on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    }
+    catch(e){
       throw 'Something went wrong. Please try again';
     }
   }
