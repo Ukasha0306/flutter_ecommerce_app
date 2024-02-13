@@ -20,12 +20,12 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final orderController = Get.put(OrderController());
-    final dark = THelperFunctions.isDarkMode(context);
     final controller = CartController.instance;
-
     final subTotal = controller.totalCartPrice.value;
+    final orderController = Get.put(OrderController());
     final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
+    final dark = THelperFunctions.isDarkMode(context);
+
     return Scaffold(
       appBar: TAppBar(
         title: Text(

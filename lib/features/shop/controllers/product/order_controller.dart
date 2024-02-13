@@ -8,7 +8,6 @@ import 'package:flutter_ecommerce_app/utils/constants/enums.dart';
 import 'package:flutter_ecommerce_app/utils/popups/full_screen_loader.dart';
 import 'package:flutter_ecommerce_app/utils/popups/loaders.dart';
 import 'package:get/get.dart';
-
 import '../../../../data/repositories/order/order_repository.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../personalization/controllers/address_controller.dart';
@@ -29,10 +28,12 @@ class OrderController extends GetxController {
   Future<List<OrderModel>> fetchUserOrders() async {
     try {
       final userOrders = await orderRepository.fetchUserOrders();
+
       return userOrders;
+
     } catch (e) {
       TLoaders.warningSnackBar(title: 'Oh snap!', message: e.toString());
-      log("The Error $e");
+
       return [];
     }
   }
@@ -49,6 +50,7 @@ class OrderController extends GetxController {
       final order = OrderModel(
         // Generate a unique iD for the user
         id: UniqueKey().toString(),
+        userId: userId,
         status: OrderStatus.pending,
         items: cartController.cartItems.toList(),
         totalAmount: totalAmount,

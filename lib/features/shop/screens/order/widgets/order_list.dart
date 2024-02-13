@@ -21,7 +21,7 @@ class TOrderListItems extends StatelessWidget {
     final controller = Get.put(OrderController());
     return FutureBuilder(
       future: controller.fetchUserOrders(),
-      builder: (context, snapshot){
+      builder: (_, snapshot){
         final emptyWidget = TAnimationLoaderWidget(
           text: 'Whoops! No Orders Yet!',
           animation: TImages.orderCompletedAnimation,
@@ -31,14 +31,13 @@ class TOrderListItems extends StatelessWidget {
         );
         final response =TCloudHelperFunctions.checkMultipleRecordState(snapshot: snapshot, nothingFound: emptyWidget);
         if(response != null) return response;
+
         final orders = snapshot.data!;
-        print("The Order ${orders}");
         return ListView.separated(
           shrinkWrap: true,
           itemCount: orders.length,
-          separatorBuilder: (_, __)=>const SizedBox(height: TSizes.spaceBtwItems,),
+          separatorBuilder: (_, index)=>const SizedBox(height: TSizes.spaceBtwItems,),
           itemBuilder: (_, index){
-            print("The length ${orders.length}");
             final order = orders[index];
             return TRoundedContainer(
               showBorder: true,
@@ -56,7 +55,7 @@ class TOrderListItems extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(order.orderStatusText, style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.primary, fontSizeDelta: 1),),
+                            Text(order.orderStatusText, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodyLarge!.apply(color: TColors.primary, fontSizeDelta: 1),),
                             Text(order.formattedOrderDate, style: Theme.of(context).textTheme.headlineSmall),
                           ],
                         ),
