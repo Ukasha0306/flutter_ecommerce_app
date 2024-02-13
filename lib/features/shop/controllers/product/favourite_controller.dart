@@ -56,14 +56,8 @@ class FavouriteController extends GetxController{
   }
 
   Future<List<ProductModel>> favouriteProducts()async{
-
-    if (favourites.isEmpty) {
-      // Wishlist is empty, return an empty list directly
-      return [];
-    }
     return await ProductRepository.instance.getFavouriteProducts(favourites.keys.toList());
 
   }
-
 
 }

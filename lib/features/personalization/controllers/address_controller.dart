@@ -189,4 +189,12 @@ class AddressController extends GetxController {
     country.clear();
     addressFormKey.currentState?.reset();
   }
+
+  @override
+  String toString(){
+    return '$street, $city, $state, $postalCode, $country';
+
+  }
+
+
 }
