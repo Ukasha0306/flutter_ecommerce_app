@@ -6,14 +6,11 @@ import 'package:flutter_ecommerce_app/common/widgets/shimmer/vertical_product_sh
 import 'package:flutter_ecommerce_app/common/widgets/texts/section_heading.dart';
 import 'package:flutter_ecommerce_app/features/shop/controllers/category_controller.dart';
 import 'package:flutter_ecommerce_app/features/shop/models/category_model.dart';
-import 'package:flutter_ecommerce_app/features/shop/models/product_model.dart';
 import 'package:flutter_ecommerce_app/features/shop/screens/all_products/all_products.dart';
 import 'package:flutter_ecommerce_app/features/shop/screens/store/widgets/category_brands.dart';
 import 'package:flutter_ecommerce_app/utils/helpers/cloud_helper_function.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/widgets/brands/brand_show_case.dart';
-import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class TCategoryTab extends StatelessWidget {

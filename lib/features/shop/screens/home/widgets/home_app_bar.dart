@@ -19,24 +19,34 @@ class HomeAppBar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(TTexts.homeAppbarTitle, style: Theme.of(context).textTheme.labelMedium!.apply(color: TColors.grey),),
-          Obx((){
-            if(controller.profileLoading.value){
-              return const TShimmerEffect(width: 80, height: 15);
-            }
-            else{
-              return Text(controller.user.value.fullName, style: Theme.of(context).textTheme.headlineMedium!.apply(color: TColors.white),);
-            }
-
-          }
+          Text(
+            TTexts.homeAppbarTitle,
+            style: Theme.of(context)
+                .textTheme
+                .labelMedium!
+                .apply(color: TColors.grey),
           ),
-
+          Obx(
+            () {
+              if (controller.profileLoading.value) {
+                return const TShimmerEffect(width: 80, height: 15);
+              } else {
+                return Text(
+                  controller.user.value.fullName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .apply(color: TColors.white),
+                );
+              }
+            },
+          ),
         ],
       ),
-      actions: [
-        TCartCounterIcon(iconColor: TColors.white,  onPressed: () {},),
-
-
+      actions: const [
+        TCartCounterIcon(
+          iconColor: TColors.white,
+        ),
       ],
     );
   }

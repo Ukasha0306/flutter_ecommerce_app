@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -21,7 +20,7 @@ class TProductAttributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
-    final controller = Get.put(VariationController());
+    final controller = VariationController.instance;
     return Obx(()=>
       Column(
         children: [

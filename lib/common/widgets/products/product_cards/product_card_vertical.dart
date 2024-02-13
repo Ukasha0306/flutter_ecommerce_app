@@ -9,11 +9,11 @@ import 'package:flutter_ecommerce_app/utils/constants/color.dart';
 import 'package:flutter_ecommerce_app/utils/constants/enums.dart';
 import 'package:flutter_ecommerce_app/utils/helpers/helper_functions.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../texts/product_title_text.dart';
 import '../../texts/t_brand_title_with_verified_icon.dart';
 import '../../texts/t_product_price_text.dart';
+import '../cart/add_to_cart_button.dart';
 import '../favourite_icon/favourite_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
@@ -26,7 +26,7 @@ class TProductCardVertical extends StatelessWidget {
     final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: ()=>Get.to(()=> ProductDetails(product: product,)),
+      onTap: ()=>Get.to(()=> ProductDetailsScreen(product: product,)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -112,26 +112,7 @@ class TProductCardVertical extends StatelessWidget {
                      ],
                    ),
                  ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: TColors.dark,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(TSizes.cardRadiusMd),
-                      bottomRight:
-                      Radius.circular(TSizes.productImageRadius),
-                    ),
-                  ),
-                  child: const SizedBox(
-                    height: TSizes.iconLg * 1.2,
-                    width: TSizes.iconLg * 1.2,
-                    child: Center(
-                      child: Icon(
-                        Iconsax.add,
-                        color: TColors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                 ProductCardAddToCartButton(product: product,),
               ],
             ),
           ],
@@ -140,6 +121,8 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+
 
 
 

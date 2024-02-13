@@ -82,8 +82,6 @@ class ProductRepository extends GetxController{
     try{
       final snapshot = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
-
-
     }
     on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

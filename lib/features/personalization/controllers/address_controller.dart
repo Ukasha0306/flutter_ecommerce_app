@@ -1,5 +1,9 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_app/common/widgets/texts/section_heading.dart';
+import 'package:flutter_ecommerce_app/features/personalization/screens/address/add_new_address.dart';
+import 'package:flutter_ecommerce_app/features/personalization/screens/address/widgets/single_address.dart';
+import 'package:flutter_ecommerce_app/utils/constants/sizes.dart';
+import 'package:flutter_ecommerce_app/utils/helpers/cloud_helper_function.dart';
 import 'package:flutter_ecommerce_app/utils/popups/loaders.dart';
 import 'package:get/get.dart';
 import '../../../data/repositories/address/address_repository.dart';
@@ -43,12 +47,15 @@ class AddressController extends GetxController {
   Future selectAddress(AddressModel newSelectedAddress) async {
     try {
       Get.defaultDialog(
-        title: '',
-        onWillPop: ()async {return false;},
-        barrierDismissible: false,
-        backgroundColor: Colors.transparent,
-        content: const CircularProgressIndicator(color: Colors.white,)
-      );
+          title: '',
+          onWillPop: () async {
+            return false;
+          },
+          barrierDismissible: false,
+          backgroundColor: Colors.transparent,
+          content: const CircularProgressIndicator(
+            color: Colors.white,
+          ));
 
       // clear the selected Address
 
@@ -63,7 +70,8 @@ class AddressController extends GetxController {
 
       // set the 'selected' field to true for the newly selected address
 
-      await addressRepository.updateSelectedField(selectedAddress.value.id, true);
+      await addressRepository.updateSelectedField(
+          selectedAddress.value.id, true);
       Get.back();
     } catch (e) {
       TLoaders.errorSnackBar(
@@ -73,7 +81,8 @@ class AddressController extends GetxController {
 
   Future addNewAddresses() async {
     try {
-      TFullScreenLoader.openLoadingDialog('Storing Address...', TImages.docerAnimation);
+      TFullScreenLoader.openLoadingDialog(
+          'Storing Address...', TImages.docerAnimation);
 
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -126,6 +135,46 @@ class AddressController extends GetxController {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Address not found', message: e.toString());
     }
+  }
+
+  // show address ModalBottomSheet at Checkout
+
+  Future<dynamic> selectNewAddressPopup(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (_) => Container(
+        padding: const EdgeInsets.all(TSizes.lg),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const TSectionHeading(title: 'Select Address', showActionButton: false,),
+              const SizedBox(height: TSizes.spaceBtwSections,),
+              FutureBuilder(
+                future: getAllUserAddresses(),
+                builder: (_, snapshot) {
+                  final response = TCloudHelperFunctions.checkMultipleRecordState(snapshot: snapshot);
+                  if (response != null) return response;
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, index) => TSingleAddress(
+                      address: snapshot.data![index],
+                      onTap: () async {
+                        await selectAddress(snapshot.data![index]);
+                        Get.back();
+                      },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: TSizes.defaultSpace * 2,),
+              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: ()=>Get.to(()=>const AddNewAddressScreen()), child: const Text('Add new Address')),)
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   //  function to reset the form fields

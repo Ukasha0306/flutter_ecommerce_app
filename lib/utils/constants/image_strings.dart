@@ -43,6 +43,8 @@ class TImages {
   static const String deliveredEmailIllustration = "assets/images/animations/sammy-line-man-receives-a-mail.png";
   static const String verifyIllustration = "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
   static const String pencilAnimation = 'assets/lottie/140429-pencil-drawing.json';
+  static const String cartAnimation = 'assets/lottie/lady-adding-product-in-cart-animation.json';
+  static const String orderCompletedAnimation = 'assets/lottie/order-complete-car-delivery-animation.json';
 
   // lottie
   static String docerAnimation = 'assets/lottie/141594-animation-of-docer.json';

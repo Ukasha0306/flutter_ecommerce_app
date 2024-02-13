@@ -3,7 +3,6 @@ import 'package:flutter_ecommerce_app/common/widgets/custom_shapes/containers/ro
 import 'package:flutter_ecommerce_app/features/shop/models/brand_model.dart';
 import '../../../utils/constants/color.dart';
 import '../../../utils/constants/enums.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';
 import '../images/t_circular_image.dart';

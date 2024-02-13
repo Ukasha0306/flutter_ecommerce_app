@@ -6,7 +6,6 @@ import 'package:flutter_ecommerce_app/common/widgets/loaders/animation_loader.da
 import 'package:flutter_ecommerce_app/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:flutter_ecommerce_app/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:flutter_ecommerce_app/features/shop/controllers/product/favourite_controller.dart';
-import 'package:flutter_ecommerce_app/features/shop/models/product_model.dart';
 import 'package:flutter_ecommerce_app/features/shop/screens/home/home_screen.dart';
 import 'package:flutter_ecommerce_app/navigation_menu.dart';
 import 'package:flutter_ecommerce_app/utils/constants/sizes.dart';

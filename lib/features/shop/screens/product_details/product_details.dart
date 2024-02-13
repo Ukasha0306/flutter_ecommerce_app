@@ -13,14 +13,14 @@ import '../../../../utils/constants/sizes.dart';
 import 'widgets/product_details_image_slider.dart';
 import 'widgets/rating_and_share.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetailsScreen extends StatelessWidget {
   final ProductModel product;
-  const ProductDetails({super.key, required this.product});
+  const ProductDetailsScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const TBottomAddToCart(),
+      bottomNavigationBar: TBottomAddToCart(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [

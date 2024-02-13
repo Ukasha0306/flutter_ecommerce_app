@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/shimmer/boxes_shimmer.dart';

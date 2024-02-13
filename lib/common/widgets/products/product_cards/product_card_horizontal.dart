@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:flutter_ecommerce_app/common/widgets/images/rounded_images.dart';
+import 'package:flutter_ecommerce_app/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:flutter_ecommerce_app/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:flutter_ecommerce_app/common/widgets/texts/product_title_text.dart';
 import 'package:flutter_ecommerce_app/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 import 'package:flutter_ecommerce_app/common/widgets/texts/t_product_price_text.dart';
 import 'package:flutter_ecommerce_app/features/shop/models/product_model.dart';
-import 'package:flutter_ecommerce_app/utils/constants/image_strings.dart';
 import 'package:flutter_ecommerce_app/utils/helpers/helper_functions.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../../../features/shop/controllers/product/product_controller.dart';
 import '../../../../utils/constants/color.dart';
 import '../../../../utils/constants/enums.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../icons/t_circular_icon.dart';
 
 class TProductCardHorizontal extends StatelessWidget {
   final ProductModel product;
@@ -105,26 +103,7 @@ class TProductCardHorizontal extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: TColors.dark,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(TSizes.cardRadiusMd),
-                            bottomRight:
-                            Radius.circular(TSizes.productImageRadius),
-                          ),
-                        ),
-                        child: const SizedBox(
-                          height: TSizes.iconLg * 1.2,
-                          width: TSizes.iconLg * 1.2,
-                          child: Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: TColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
+                      ProductCardAddToCartButton(product: product)
                     ],
                   ),
 

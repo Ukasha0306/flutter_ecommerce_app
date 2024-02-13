@@ -1,20 +1,21 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_app/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:flutter_ecommerce_app/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:flutter_ecommerce_app/common/widgets/shimmer/vertical_product_shimmer.dart';
-import 'package:flutter_ecommerce_app/features/shop/controllers/product/product_controller.dart';
-import 'package:flutter_ecommerce_app/features/shop/screens/all_products/all_products.dart';
-import 'package:flutter_ecommerce_app/features/shop/screens/home/widgets/home_app_bar.dart';
-import 'package:flutter_ecommerce_app/features/shop/screens/home/widgets/home_category.dart';
-import 'package:flutter_ecommerce_app/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:flutter_ecommerce_app/utils/constants/color.dart';
 import 'package:get/get.dart';
+
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
 import '../../../../common/widgets/layout/grid_layout.dart';
+import '../../../../common/widgets/products/product_cards/product_card_vertical.dart';
+import '../../../../common/widgets/shimmer/vertical_product_shimmer.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
+import '../../../../utils/constants/color.dart';
 import '../../../../utils/constants/sizes.dart';
+import '../../controllers/product/product_controller.dart';
+import '../all_products/all_products.dart';
+import 'widgets/home_app_bar.dart';
+import 'widgets/home_category.dart';
+import 'widgets/promo_slider.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

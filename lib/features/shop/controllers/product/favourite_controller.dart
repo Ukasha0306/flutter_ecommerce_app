@@ -41,7 +41,7 @@ class FavouriteController extends GetxController{
         TLoaders.customToast(message: 'Product has been added to the wishlist');
       }
       else{
-        TLocalStorage.instance().readData(productId);
+        TLocalStorage.instance().removeData(productId);
         favourites.remove(productId);
         saveFavouritesToStorage();
         favourites.refresh();
@@ -52,10 +52,18 @@ class FavouriteController extends GetxController{
 
   void saveFavouritesToStorage(){
       final encodedFavourites = json.encode(favourites);
-      TLocalStorage.instance().saveData('favourites', encodedFavourites);
+      TLocalStorage.instance().writeData('favourites', encodedFavourites);
   }
 
   Future<List<ProductModel>> favouriteProducts()async{
-      return await ProductRepository.instance.getFavouriteProducts(favourites.keys.toList());
+
+    if (favourites.isEmpty) {
+      // Wishlist is empty, return an empty list directly
+      return [];
+    }
+    return await ProductRepository.instance.getFavouriteProducts(favourites.keys.toList());
+
   }
+
+
 }
